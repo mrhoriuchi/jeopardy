@@ -30,11 +30,7 @@ let categories = [];
 async function getCategoryIds() {
   let res = await axios.get("https://jservice.io/api/categories?count=100");
   const catIds = res.data.map((result) => result.id);
-  // .filter((value) => {
-  //   value.clues.length >= 5;
-  // });
   // Makes an array of 6 of the 100 catergories.
-  console.log(catIds);
   return _.sampleSize(catIds, NUM_CATEGORIES);
 }
 
@@ -62,6 +58,11 @@ async function getCategory(catId) {
     .filter((value) => {
       return value.question !== "=";
     });
+  if (arr.length < 5) {
+    let res = await axios.get("https://jservice.io/api/categories?count=100");
+    const catIds = res.data.map((result) => result.id);
+    return getCategory(_.sampleSize(catIds, 1)[0]);
+  }
   const clueArr = _.sampleSize(arr, NUM_QUESTIONS_PER_CAT);
   return { title: res.data.title, clues: clueArr };
 }
