@@ -88,7 +88,7 @@ async function fillTable() {
     // This will create the questions/answers with a nested forloop
     const body$tr = $("<tr>");
     for (let j = 0; j < NUM_CATEGORIES; j++) {
-      body$tr.append($("<td>").attr("id", `${j}-${i}`).text("?"));
+      body$tr.append($("<td>").attr("id", `${j}-${i}`).text(`$${200 * (i + 1)}`));
     }
     $("#jeopardy tbody").append(body$tr);
   }
