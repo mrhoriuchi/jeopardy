@@ -114,6 +114,7 @@ function handleClick(evt) {
   } else if (clue.showing === "question") {
     clue.showing = "answer";
     $(`#${id}`).html(clue.answer);
+    $(`#${id}`).css({ "background-color": "orange" })
   }
 }
 
